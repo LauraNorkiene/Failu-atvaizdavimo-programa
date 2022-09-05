@@ -12,6 +12,16 @@
 </head>
 
 <body>
+    <?php
+    include_once('kintamieji.php');
+
+    $dir = '';
+    if (isset($_GET['dir'])) {
+        $dir = $_GET['dir'];
+    }
+
+    echo "dir= $dir";
+    ?>
 
     <nav class="navbar navbar-expand-lg bg-light mb-5 ps-5 pe-5 fs-4">
         <div class="container-fluid">
@@ -28,8 +38,25 @@
                         <a class="nav-link active" href="login.php?logout=1">Atsijungti</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+                <form class="d-flex" role="search" method="POST" action="new.php">
+                    <input type="hidden" name="path" value="<?= $dir ?>">
+                    <input type="text" name="pavadinimas" placeholder="Iveskite failo pavadinima">
+                    <select name="files" id="files">
+                        <option value="failas">Pasirinkite Failo tipą:</option>
+                        <option value="txt">Text</option>
+                        <option value="php">PHP</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="folder">Folder</option>
+                    </select>
+                    <br><br>
+                    <input type="submit" value="Sukurti">
+                </form>
+
+                <form class="d-flex" role="search" method="POST" action="paieska.php">
+                    <input type="hidden" name="path" value="<?= $dir ?>">
+                    <input class="form-control me-2" type="search" name="file" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-secondary" value="Search" type="submit">Search</button>
                 </form>
             </div>

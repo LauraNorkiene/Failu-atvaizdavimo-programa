@@ -1,3 +1,3 @@
 <?php
 
-define('ROOT_PATH', 'c:/');
+define('ROOT_PATH', 'c:/xampp/htdocs');

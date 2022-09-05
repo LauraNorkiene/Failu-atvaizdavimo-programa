@@ -1,8 +1,16 @@
 <?php
-setcookie("labas", "gediminas", time() + 60);
+
+//echo password_hash("Labadiena", PASSWORD_DEFAULT);
+
+if (isset($_POST['user'])) {
+  setcookie('username', $_POST['user'], time() + 60 * 60 * 100);
+}
+
 session_start();
 if (isset($_POST['user']) && isset($_POST['password'])) {
-  if ($_POST['user'] == 'admin' && $_POST['password'] == 'admin') {
+  $password = $_POST['password'];
+
+  if ($_POST['user'] == 'LauraNorkiene' && (password_verify($password, '$2y$10$VCMwZbuR355FUIjRFarc2uHh9a2NTAH1AvgAq2tRgrWX.NLE9L3Jm'))) {
     $_SESSION['login'] = 1;
     $_SESSION['user'] = $_POST['user'];
     header("location:antras.php");
@@ -12,7 +20,6 @@ if (isset($_POST['user']) && isset($_POST['password'])) {
 
 if (isset($_GET['logout'])) {
   session_destroy();
-  // unset($_SESSION);
 }
 ?>
 <!DOCTYPE html>
@@ -33,7 +40,13 @@ if (isset($_GET['logout'])) {
     <form action="" method="post">
       <div class="mb-3 col-4 mx-auto">
         <label for="user" class="form-label fs-2">User</label>
-        <input type="user" class="form-control" name="user" aria-describedby="emailHelp">
+        <input type="user" class="form-control" name="user" value="
+        <?php
+        if (isset($_COOKIE["username"])) {
+          echo $_COOKIE['username'];
+        }
+        ?>
+        ">
 
       </div>
       <div class="mb-3 col-4 mx-auto">

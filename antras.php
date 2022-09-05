@@ -20,6 +20,13 @@
 <body>
 
     <?php
+    $dir = '';
+    if (isset($_GET['dir'])) {
+        $dir = $_GET['dir'];
+    }
+
+
+
     include("nav.php");
     include_once('kintamieji.php');
 
@@ -61,6 +68,7 @@
     }
 
     printDir($dir);
+
 
 
     ?>
