@@ -21,6 +21,7 @@
     }
 
     echo "dir= $dir";
+
     ?>
 
     <nav class="navbar navbar-expand-lg bg-light mb-5 ps-5 pe-5 fs-4">

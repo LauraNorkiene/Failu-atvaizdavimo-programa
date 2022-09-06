@@ -40,13 +40,7 @@ if (isset($_GET['logout'])) {
     <form action="" method="post">
       <div class="mb-3 col-4 mx-auto">
         <label for="user" class="form-label fs-2">User</label>
-        <input type="user" class="form-control" name="user" value="
-        <?php
-        if (isset($_COOKIE["username"])) {
-          echo $_COOKIE['username'];
-        }
-        ?>
-        ">
+        <input type="user" class="form-control" name="user" value="<?= (isset($_COOKIE["username"])) ? $_COOKIE['username'] : '' ?>">
 
       </div>
       <div class="mb-3 col-4 mx-auto">
